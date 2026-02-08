@@ -1,50 +1,82 @@
-# Welcome to your Expo app 👋
+# 📱 Expo Activity Tracker
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A simple React Native (Expo) application that allows users to log, view, and delete exercise activities throughout the day.  
+The project focuses on **clean architecture**, **extensibility**, and **production-ready patterns** rather than just UI functionality.
 
-## Get started
+---
 
-1. Install dependencies
+## ✨ Features
 
-   ```bash
-   npm install
-   ```
+- Add exercise activities with:
+  - Activity name
+  - Duration (minutes)
+  - Activity date
+  - Optional notes
+- View a list of logged activities
+- Delete activities
+- Local data persistence
+- Form validation with schema enforcement
+- Activities automatically loaded on app startup
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 🧱 Architecture Overview
 
-In the output, you'll find options to open the app in a
+This project uses a **service-first layered architecture** designed for extensibility and maintainability.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+UI (Expo Router Screens)<br />
+↓<br />
+Context + Reducer (State)<br />
+↓<br />
+Service Layer (Business Logic)<br />
+↓<br />
+Storage Adapter<br />
+↓<br />
+AsyncStorage<br />
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### Key Principles
 
-## Get a fresh project
+- Services own business logic and persistence
+- Context manages in-memory UI state
+- Reducers remain pure (no business logic or storage calls)
+- Storage is abstracted to allow future migration (e.g., SQLite or API)
+- Validation is shared between UI and services
 
-When you're ready, run:
+---
+
+## 🛠️ Tech Stack
+
+- **Expo / React Native**
+- **Expo Router** – Navigation
+- **React Context + useReducer** – State management
+- **AsyncStorage** – Local persistence
+- **React Hook Form** – Form handling
+- **Zod** – Schema validation
+
+---
+
+## 🧾 Data Model
+
+Activity
+
+id<br />
+userId<br />
+name<br />
+duration<br />
+notes<br />
+activityDate<br />
+createdAt
+
+---
+
+## 🚀 Getting Started
+
+### Install dependencies
 
 ```bash
-npm run reset-project
+npm install
+
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Run using Expo Go.
