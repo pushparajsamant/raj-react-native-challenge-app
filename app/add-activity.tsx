@@ -20,9 +20,7 @@ import {
   View,
 } from 'react-native'
 
-interface AddActivityProps {}
-
-const AddActivity = (props: AddActivityProps) => {
+const AddActivity = () => {
   const { addActivity } = useActivities()
   const router = useRouter()
   const headerHeight = useHeaderHeight()
@@ -34,7 +32,7 @@ const AddActivity = (props: AddActivityProps) => {
     resolver: zodResolver(activitySchema),
     defaultValues: {
       name: '',
-      duration: 0,
+      duration: '',
       notes: '',
       activityDate: new Date().toISOString().split('T')[0],
     },
