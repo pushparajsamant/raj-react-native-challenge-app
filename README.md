@@ -1,7 +1,6 @@
 # 📱 Expo Activity Tracker
 
-A simple React Native (Expo) application that allows users to log, view, and delete exercise activities throughout the day.  
-The project focuses on **clean architecture**, **extensibility**, and **production-ready patterns** rather than just UI functionality.
+A simple React Native (Expo) application that allows users to log, view, and delete exercise activities throughout the day.
 
 ---
 
