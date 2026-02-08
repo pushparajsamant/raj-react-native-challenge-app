@@ -1,5 +1,5 @@
-import { asyncStorageAdapter } from "@/src/util/asyncStorageAdapter";
-import { Activity } from "../models/Activity";
+import { asyncStorageAdapter } from "@/src/features/Activity/services/storage/asyncStorageAdapter";
+import { Activity } from "../@types/Activity";
 
 const getKey = (userId: string) => `activities:${userId}`;
 

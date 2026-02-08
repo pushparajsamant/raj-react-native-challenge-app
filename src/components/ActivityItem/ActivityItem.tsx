@@ -1,7 +1,8 @@
 import AntDesign from '@expo/vector-icons/AntDesign'
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import React from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
+import { ActivityItemStyles } from './styles/ActivityItem.styles'
 interface ActivityItemProps {
   name: string
   duration?: number
@@ -48,34 +49,5 @@ const ActivityItem = (props: ActivityItemProps) => {
     </View>
   )
 }
-
-const ActivityItemStyles = StyleSheet.create({
-  container: {
-    padding: 16,
-    backgroundColor: '#f9f9f9',
-    borderRadius: 8,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 12,
-  },
-  details: {
-    flex: 1,
-    marginLeft: 16,
-  },
-  activityName: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginVertical: 4,
-  },
-  textValue: {
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
-  caption: {
-    fontSize: 14,
-    color: '#141313',
-  },
-})
 
 export default ActivityItem

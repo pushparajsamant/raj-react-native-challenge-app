@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react'
-import { Activity } from '../models/Activity'
+import { Activity } from '../@types/Activity'
 import { activityService } from '../services/activityService'
 import { activityReducer, initialState } from './activityReducer'
 

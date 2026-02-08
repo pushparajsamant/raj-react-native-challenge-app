@@ -1,4 +1,4 @@
-import { Activity } from "../models/Activity";
+import { Activity } from "../@types/Activity";
 import { activityStorage } from "./activityStorageService";
 
 const generateId = () => Math.random().toString(36).substring(2);

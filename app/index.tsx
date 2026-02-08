@@ -1,10 +1,9 @@
-import ActivityItem from '@/src/components/ActivityItem'
-import FloatingButton from '@/src/components/FloatingButton'
+import ActivityItem from '@/src/components/ActivityItem/ActivityItem'
+import FloatingButton from '@/src/components/FloatingButton/FloatingButton'
 import { useActivities } from '@/src/features/Activity/contexts/activityContext'
 import { useRouter } from 'expo-router'
 import { ActivityIndicator, FlatList, Text, View } from 'react-native'
-import { HomeStyles } from './styles/home.styles'
-const ITEM_HEIGHT = 120
+import { HomeStyles } from '../src/styles/screens/home.styles'
 export default function Index() {
   const { loading, activities, deleteActivity } = useActivities()
   const router = useRouter()

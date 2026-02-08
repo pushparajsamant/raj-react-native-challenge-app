@@ -1,4 +1,4 @@
-import { Activity } from "../models/Activity";
+import { Activity } from "../@types/Activity";
 
 export type State = {
   activities: Activity[];
