@@ -6,12 +6,25 @@ export const asyncStorageAdapter = {
     if (!data) return null
     try {
       return JSON.parse(data)
-    } catch {
-      return null
+    } catch (error) {
+      console.error(`[Storage] Failed to read "${key}":`, error)
+      return new StorageError(`Could not parse data for key "${key}"`, error)
     }
   },
 
   async set(key: string, value: unknown) {
-    await AsyncStorage.setItem(key, JSON.stringify(value));
+    try {
+      const serialized = JSON.stringify(value)
+      await AsyncStorage.setItem(key, serialized)
+    } catch (error) {
+      console.error(`[Storage] Failed to write "${key}":`, error)
+      throw new StorageError(`Could not persist data for key "${key}"`, error)
+    }
   },
 };
+export class StorageError extends Error {
+  constructor(message: string, public cause?: unknown) {
+    super(message)
+    this.name = 'StorageError'
+  }
+}

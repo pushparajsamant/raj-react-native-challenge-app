@@ -1,15 +1,18 @@
 import { useActivities } from '@/src/features/Activity/contexts/activityContext'
+import { ActivityServiceError } from '@/src/features/Activity/services/activityService'
 import {
   ActivityFormInput,
   ActivityInput,
   activitySchema,
 } from '@/src/features/Activity/validation/activitySchema'
+import { showToast } from '@/src/util/util'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useHeaderHeight } from '@react-navigation/elements'
 import { useRouter } from 'expo-router'
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import {
+  ActivityIndicator,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
@@ -24,6 +27,7 @@ const AddActivity = () => {
   const { addActivity } = useActivities()
   const router = useRouter()
   const headerHeight = useHeaderHeight()
+  const [loading, setLoading] = React.useState(false)
   const {
     control,
     handleSubmit,
@@ -38,14 +42,42 @@ const AddActivity = () => {
     },
   })
   const onSubmit = async (data: ActivityInput) => {
-    await addActivity({
-      name: data.name,
-      duration: data.duration,
-      notes: data.notes,
-      activityDate: new Date().toISOString(),
-    })
-
-    router.back()
+    try {
+      setLoading(true)
+      await addActivity({
+        name: data.name,
+        duration: data.duration,
+        notes: data.notes,
+        activityDate: new Date().toISOString(),
+      })
+      showToast({ type: 'success', message: 'Activity added!' })
+      router.back()
+    } catch (error) {
+      console.error('Failed to add activity:', error)
+      if (error instanceof ActivityServiceError) {
+        if (error.code === 'INVALID_INPUT') {
+          showToast({ type: 'error', message: error.message })
+        } else if (error.code === 'SAVE_ERROR') {
+          showToast({
+            type: 'error',
+            message: 'Storage problem. Try again later.',
+          })
+        } else {
+          showToast({ type: 'error', message: error.message })
+        }
+      } else {
+        showToast({ type: 'error', message: 'Unexpected error' })
+      }
+    } finally {
+      setLoading(false)
+    }
+  }
+  if (loading) {
+    return (
+      <View style={AddActivityStyles.container}>
+        <ActivityIndicator size="large" />
+      </View>
+    )
   }
 
   return (
