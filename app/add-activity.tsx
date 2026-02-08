@@ -87,7 +87,7 @@ const AddActivity = (props: AddActivityProps) => {
                 keyboardType="numeric"
                 onChangeText={onChange}
                 onBlur={onBlur}
-                value={value ? String(value) : ''}
+                value={String(value)}
                 placeholderTextColor={'#555252'}
               />
             )}

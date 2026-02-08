@@ -41,11 +41,6 @@ export default function Index() {
           </View>
         }
         contentContainerStyle={HomeStyles.flatListContainer}
-        getItemLayout={(_, index) => ({
-          length: ITEM_HEIGHT,
-          offset: ITEM_HEIGHT * index,
-          index,
-        })}
       />
       <FloatingButton onPress={handleAddActivity} />
     </View>

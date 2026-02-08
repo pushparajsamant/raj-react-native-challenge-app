@@ -30,7 +30,7 @@ const ActivityItem = (props: ActivityItemProps) => {
           </Text>
         </Text>
         <Text style={ActivityItemStyles.activityName}>{name}</Text>
-        {duration && (
+        {duration !== undefined && (
           <Text style={ActivityItemStyles.caption}>
             Duration:{' '}
             <Text style={ActivityItemStyles.textValue}>{duration} mins</Text>
